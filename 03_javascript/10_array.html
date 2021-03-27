@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js - array</title>
+</head>
+<body>
+    <h1>Array</h1>
+    <h2>배열생성</h2>
+    <input type="button" value="배열 생성" onclick="test1();">
+    <input type="button" value="초기화" onclick="test2();">
+    <script>
+        /**
+         * javascript 배열은 크기제한,타입제한이 없다
+         * ArrayList<Object>와 비슷
+         */ 
+        function test1() {
+            var arr1 = [];
+            var arr2 = new Array(); //new연산자 사용가능
+            var arr3 = new Array(3); //크기지정도 가능. 하지만 쓸데없다(왜나면 계속추가할수있으므로)
+            console.log(arr1);
+            console.log(arr2);
+            console.log(arr3);
+            
+            //값대입
+            arr1[0] = 'a';
+            arr1[1] = "b";
+
+            arr3[0] = 1;
+            arr3[1] = 2;
+            arr3[2] = 3;
+            arr3[3] = '4';
+            
+            //값 가져오기
+            console.log(arr1[0]);
+            console.log(arr1[1]);
+            console.log(arr1[2]); //존재하지않는값 : undefined
+
+            //반복문
+            // for(var i = 0; i < arr1.length; i++){
+            //     console.log(arr1[i]);
+            // }
+
+            //for..in문 : 배열, 객체에 사용
+            //배열 : i변수에는 배열의 인덱스가 대입됨
+            //객체 : i변수에 속성명이 대입됨
+            for(var i in arr1){
+                console.log(i, arr1[i]);
+            }
+            
+        }
+
+
+        /**
+         * 초기화 : 변수선언, 값대입 동시에 처리
+         */
+        function test2() {
+            var arr1 = [1, 2, 3]; //자바 : int[] arr = {1,2,3};
+            var arr2 = new Array("철수","영희","삼식");
+            console.log(arr1);
+            console.log(arr2);
+            //타입제한이 없다
+            var arr3 = [1, 2, 3 ,"영희", true, 2.18, {id : "hoggd"}]; 
+            console.log(arr3);
+
+            //2차원배열
+            var arr4 = [1, 2, 3, ['a','b','c']];
+            console.log(arr4);
+            console.log(arr4[3][1]); //'b'
+
+            //모든요소를 열람
+            for(var i in arr4){
+                if(arr4[i].length){
+                    //배열인경우
+                    for(var j in arr4[i]){
+                        console.log(arr4[i][j]);
+                    }
+                }else
+                    //단순요소인경우(undefined)
+                    console.log(arr4[i]);
+            }
+        }
+    </script>
+
+    <h2>일반배열 | 유사배열</h2>
+    <input type="button" value="실행" onclick="test3();">
+    <script>
+        /**
+         * 일반배열 : Array객체 상속. Array메소드 사용가능
+         * 유사배열 : Array가 아닌 객체 상속. Array메소드 사용불가
+         *
+         */
+        var test3 = function() {
+            var arr1 = [1, 2, 3]; //진짜배열
+            var arr2 = document.getElementsByTagName("input"); //가짜배열
+            console.log(arr1); //__proto__: Array
+            console.log(arr2); //_proto__: HTMLCollection
+
+            //유사배열은 for..in사용하지말것
+            //유사배열은 객체처럼 작동함. index가 아닌 속성명이 i에 담기게된다
+            // for(var i in arr2){
+            //     console.log(i, arr2[i]); //0 1 2 length item
+            // }
+
+            for(var i = 0; i < arr2.length; i++){
+                console.log(arr2[i]);
+            }
+        }
+    </script>
+
+    <h2>Array Method</h2>
+    <input type="button" value="indexOf" onclick="test4();">
+    <input type="button" value="concat" onclick="test5();">
+    <input type="button" value="join" onclick="test6();">
+    <input type="button" value="reverse" onclick="test7();">
+    <input type="button" value="sort" onclick="test8();">
+    <input type="button" value="push | pop" onclick="test9();">
+    <input type="button" value="unshift | shift" onclick="test10();">
+    <input type="button" value="slice" onclick="test11();">
+    <input type="button" value="splice" onclick="test12();">
+    <input type="button" value="실습문제" onclick="test13();">
+    <input type="button" value="forEach" onclick="test14();">
+
+    <ul id="hobby-list"></ul>
+    <hr>
+    <ul id="drink">
+        <li>coke</li>
+        <li>juice</li>
+        <li>coffee</li>
+        <li>beer</li>
+        <li>wine</li>
+    </ul>
+    <!-- input:b[onclik] -->
+    <input type="button" value="실습문제#drink" onclick="test15();">
+    
+    
+    <script>
+        var test4 = function() {
+            var arr = ['apple', 'melon', 'banana', 'melon'];
+            console.log(arr.indexOf('melon')); //1
+            console.log(arr.lastIndexOf('melon')); //3
+            console.log(arr.indexOf('mango')); //-1 : 존재하지않는요소일경우
+        }
+
+        /**
+         * concat : 두배열을 합쳐서 새로운 하나의 배열로 리턴
+         */
+        var test5 = function() {
+             var arr1 = ['a','b','c'];
+             var arr2 = [1, 2, 3, 4];
+
+             console.log(arr1.concat(arr2)); //arr1기준으로 합친다
+             //원본배열은 변경되지않음
+             console.log(arr1); 
+             console.log(arr2);
+        }
+
+        /**
+         * join : 요소를 지정한 구분자로 합쳐서 문자열로 리턴
+         */
+        var test6 = function() {
+            var arr = [1, 2, 3, 4, 5];
+            var s = arr.join("-"); //구분자 생략시 ,로 연결함
+            console.log(s);
+            console.log(typeof s); //string
+            console.log(arr);
+        }
+
+        /**
+         * reverse : 원본배열요소의 순서를 뒤집어서 리턴
+         */
+        var test7 = function() {
+            var arr = [1,2,3,4,5];
+            console.log(arr.reverse()); //원본배열을 변경   
+        }
+
+        /**
+         * sort : 오름차순(기본값) 정렬해서 리턴
+         */
+        var test8 = function() {
+            var arr = [4,3,2,1];
+            console.log(arr.sort()); //원본배열을 변경
+            
+            //console.log(arr.sort().reverse());
+            //내림차순
+            //정렬기준함수(callback함수)를 내림차순으로 처리되도록 전달
+            arr.sort(function(a,b){
+                console.log("a = " + a + ", b = " + b);
+                return b - a;
+            });
+            console.log(arr);
+
+            //문자열정렬 : 오름차순(사전등재순)
+            var names = ["홍길동", '김길동', '라마단' ,"다나가"];
+            console.log(names.sort());
+            //console.log("홍길동" - "김길동");// NaN
+            //console.log("홍길동" > "김길동");// true크기비교연산
+            
+            //내림차순
+            names.sort(function(a,b) {
+                if(a>b) return -1; //음수가 리턴되면 자리교환이 일어난다
+                //0이나 1은 아무일도 일어나지않는다
+                if(a<b) return 1; 
+                return 0;
+            });
+            console.log(names);
+        }
+
+        /**
+         * push : 배열마지막에 요소추가후 변경된 길이를 리턴
+         * pop : 배열 마지막요소를 제거후에 제거된 요소를 리턴
+         * unshift : 배열 0번지에 요소추가후 변경된 길이를 리턴
+         * shift : 배열 0번지요소 제거후에 제거된 요소를 리턴
+         */
+        var test9 = function() {
+            var arr = [];
+            var arr2 = [];
+            arr.push(1);
+            arr.push(2);
+            arr.push(3);
+            arr.push(4);
+            console.log(arr); //1,2,3,4
+            
+            //마지막요소제거
+            // console.log(arr.pop()); // 제거된요소리턴
+            // console.log(arr.pop());
+            // console.log(arr); //1,2      
+
+            var i = 1;
+            while(i <= 100){
+                arr2.push(i);
+                i++;
+            }
+            // console.log(arr2);
+
+            //arr의 마지막요소부터 제거해서 모든요소를 copy에 옮겨담기
+            //[100,99,98......1]
+            var copy = [];
+
+            var i = 0;
+            while(i < 100){
+                copy[i] = arr2.pop();
+                //copy.push(arr2.pop());
+                i++;
+            }
+            console.log(copy); //100,99,98....1
+            console.log(arr2); //[]
+        }
+
+        /**
+         * 
+         */
+        var test10 = function() {
+           var arr = ['사과','배','아보카도'];
+           arr.unshift('감자');
+           arr.unshift('양파');
+           console.log(arr);
+
+            console.log(arr.shift()); //제거된 요소리턴
+            console.log(arr);
+        }
+
+        /**
+         * slice(startIndex(포함), endIndex(미포함))
+         * startIndex부터 endIndex전까지의 요소를 가져와서 새 배열로 리턴
+         */
+        var test11 = function() {
+            var arr = ['a','b','c','d','e'];
+            var other = arr.slice(1,4); //b~d
+            //var other = arr.slice(1); //b~e
+            //var other = arr.slice(); //a~e : copy효과(복제)
+
+            console.log(arr); //a,b,c,d,e
+            console.log(other); //b,c,d
+        }
+
+        /**
+         * splice(startIndex, deleteCount, item1, item2, .....)
+         * startIndex부터 deleteCount개의 요소를 제거하고,
+         * startIndex에 item1, item2,.....를 추가
+         */
+        var test12 = function() {
+            var arr = ['a','b','c','d','e'];
+            //a x y c d e
+            arr.splice(1,1, 'x','y');
+
+            //a x k h e
+            arr.splice(2,3,'k','h');
+
+            //추가만할경우 a x f r i k h e
+            arr.splice(2,0,'f','r','i');
+
+            //제거만할경우
+            arr.splice(2,3);
+            arr.splice(2); //2번지이후 모든요소제거
+
+            console.log(arr); //원본배열 변경
+        }
+
+        /**
+         * prompt를 이용해 사용자의 취미리스트를 입력받으세요
+         * 예) 농구,수영,캠핑,낚시로 입력
+         * ,구분자로 잘라서 배열로 담은후 사전순 정렬이후 ul#hobby-list의 자식 li태그로 추가하세요
+         */
+        test13 = function() {
+            var hobbies = prompt("당신의 취미는 무엇입니까?");
+            
+            if(!hobbies) {
+                alert("입력값이 유효하지않습니다");
+                return;
+            }
+
+            var a = hobbies.split(',');
+            a.sort();
+
+            var ul = document.getElementById("hobby-list");
+            console.log(ul);
+            for(var i = 0; i < a.length; i++){
+                ul.innerHTML += "<li>" + a[i] + "</li>";
+            }
+            
+            //forEach(function(요소, 인덱스))
+            //
+            // a.forEach(function(hobby, idx) {
+            //     ul.innerHTML += "<li>" + hobby + "</li>";
+            // })
+        
+        }
+
+        /**
+         * arr.forEach(callbackFunction(element,index){
+         *      //요소마다 실행구문
+         * })
+         * 
+         * 유사배열도 사용가능
+         */
+        var test14 = function() {
+            var arr = [1,2,3,4,5];
+            var sum = 0;
+            arr.forEach(function(elem,i) {
+                console.log(i,elem);
+                sum += elem;
+            });
+            //alert(sum);
+
+            //유사배열도 사용가능
+            var btnValues = [];
+            document.querySelectorAll("input[type=button]").forEach(function(elem,i) {
+               console.log(i,elem);
+               btnValues.push(elem.value); 
+            });
+            console.log(btnValues); //버튼value값을 넣은 새로운배열
+        };
+
+        /**
+         * 실습문제#drink
+         * 배열 drink에 #drink태그의 자식li태그 텍스트를 추가할것
+         */
+        var test15 = function() {
+            var drink = [];
+            document.querySelectorAll("ul#drink>li").forEach(function(elem,i) {
+                console.log(i,elem);
+                drink.push(elem.innerText)
+            });
+            console.log(drink);
+        };
+
+        
+    </script>
+
+</body>
+</html>

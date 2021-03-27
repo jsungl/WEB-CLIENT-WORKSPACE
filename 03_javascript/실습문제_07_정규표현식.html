@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        @실습문제 : 주민번호 정규표현식 <br>
+        다음과 같은 input태그에서 주민번호를 체크하는 정규표현식을 작성해서, 유효한지 아닌지 alert를 통해 처리할세요.
+        <pre>900909-1234566</pre>
+    </p>
+    <label>주민번호 입력 : </label>
+    <input type="text" id="ssn">
+    <button type='button' onclick="testSSN();">실행확인</button>
+    <script>
+        function testSSN() {
+            var val = ssn.value;
+            //var re = /^\d\d\d\d\d\d-\d\d\d\d\d\d\d$/;
+            //var re = /^\d{6}-\d{7}$/;
+            //var re = /^\d{6}-[1234]\d{6}$/;
+            var re = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])-[1234]\d{6}$/;
+
+            if(re.test(val))
+                alert('유효한주민번호입니다');
+            else
+                alert('주민번호가 유효하지않습니다');
+        }
+    </script>
+</body>
+</html>

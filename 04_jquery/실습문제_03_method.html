@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <h2>Method1</h2>
+    <script>
+        function add(){
+            var title = $("input:eq(0)").val();
+            var content = $("input:eq(1)").val();
+            var owner = $("input:eq(2)").val();
+            $("tr").last().after("<tr><td>"+title+"</td>"+"<td>"+content+"</td>"+"<td>"+owner+"</td></tr>");
+            $("input:text").val(''); //초기화
+        }
+    </script>
+    
+    제목 : <input type="text" name="title" /> <br />
+    내용 : <input type="text" name="content" /><br />
+    작성자 : <input type="text" name="owner" /><br /> <br>
+    <input type="button" value="테이블에 추가" onclick="add()" /> <br><br>
+    <table border="1">
+        <tr>
+            <td> 제목 </td>
+            <td> 내용 </td>
+            <td> 작성자 </td>
+        </tr>
+    </table>
+</body>
+</html>

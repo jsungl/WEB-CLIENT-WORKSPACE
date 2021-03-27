@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>block | inline</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black; /*rgd(0,0,0)*/
+            background-color: blue;
+        }
+
+        span {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black; /*rgd(0,0,0)*/
+            background-color:gold;
+        }
+    </style>
+</head>
+<body>
+    <h1>block요소</h1>
+    <!-- 화면너비를 전체 사용하므로 태그를 나열했을때 줄바꿈처리되어 세로로 배치됨-->
+    <!-- div : 영역태그-->
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+
+    <!-- p>lorem -->
+    <!-- lorem ipsum : 채우기텍스트(아무글자나 채워준다 테스트용)-->
+    <p style="background-color: green;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, reprehenderit? Similique iste repellendus nobis saepe eveniet minus debitis voluptatem maxime qui necessitatibus consequatur quam, vel soluta in alias mollitia libero.</p>
+
+
+    <h1>inline요소</h1>
+    <!-- 컨텐츠영역만을 너비로 사용하므로 태그 나열시 줄바꿈되지않고 옆으로 배치됨-->
+    <!-- width, height값은 무시된다-->
+    <span>span1</span>
+    <span>span2</span>
+    <span>span3</span>
+
+    <span style="background-color: azure;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio voluptatibus sapiente error nam qui, aut similique amet saepe maiores atque commodi, nemo consequatur debitis ipsum. Repellat iusto corporis impedit mollitia!</span>
+</body>
+</html>

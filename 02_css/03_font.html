@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css - font</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- 웹폰트사용-->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>font</h1>
+    <div class="wrapper">
+     <p id="ff1">가나다라마바사 abcdefg ABCDEFG 1234569</p>
+     <p id="ff2">가나다라마바사 abcdefg ABCDEFG 1234569</p>
+     <p id="ff3">가나다라마바사 abcdefg ABCDEFG 1234569</p>
+    </div>
+    <style>
+        /* p {
+            font-size: 32px;
+        } */
+
+        /* 1em = 24px, 100% = 24px  */
+        /* .wrapper {
+            font-size: 24px;  
+        } */
+        #ff1 {
+            /* 왼쪽부터 우선순위가 높다. 오른쪽 끝에는 generic-family라는 기본서체 */
+            /* serif | sans-serif | cursive | monospaced */
+            font-family: 궁서체, "휴먼모음T";
+            font-size: 32px; /* px : 절대값 단위 */
+        }
+
+        #ff2 {
+            font-family: 'Source Code Pro', monospace; /* 웹폰트사용 */
+            font-size: 2em; /* em : 상대값 단위(가장 가까운 부모요소 기준. 1em = 16px) */
+        }
+        #ff3 {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 150%; /* % : 상대값 단위(가장 가까운 부모요소 기준. 100% = 16px)*/
+        }
+
+        /* cascade 부모태그에 적용한 속성이 자식(후손)태그로 전이되어서 처리됨 */
+        /* body {
+            font-family: 'Source Code Pro', monospace;
+        }  */
+    </style>
+
+    <hr>
+    <ul>
+        <li id="li1">글꼴 얇게</li>
+        <li id="li2">글꼴 두껍게</li>
+        <li id="li3">글꼴 더두껍게</li>
+    </ul>
+    <style>
+        /* ul {
+            font-weight: 200;
+        } */
+        li {
+            font-size: 32px;
+        }
+        #li1 {
+            font-weight: 200;
+        }
+        #li2 {
+            font-weight: bold;
+        }
+        #li3 {
+            font-weight: bolder;
+        }
+    </style>
+
+    <span id="font">안녕하세요 abcdefg ABCDEFG 1234567890</span>
+    <style>
+        span#font {
+            /* 모아쓰기 */
+            /* font-style font-variant font-weight font-size/line-height font-family */
+            font: italic normal bold 24px/30px 'Source Code Pro';
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script>
+         $(document).ready(function() {
+             $("#clone").on("click",function() {
+                var $copy = $(".wrapper:eq(0)").clone();
+                $copy.appendTo($(".result"));
+             });
+
+             $("#remove").on("click",function() {
+                $(".result .wrapper:eq(0)").remove();
+             })
+        });
+
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <button type="button" id="clone" >복사하기</button>
+        <button type="button" id="remove">삭제하기</button>   
+    </div>
+    <div class="result"></div>
+
+    <style>
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            background-color: orangered;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js - closure</title>
+</head>
+<body>
+    <h1>Function - closure</h1>
+    <h2>자유변수</h2>
+    <script>
+        /**
+         * 자유변수 : 함수지역범위에 정의되지 않은 변수
+         * 
+         */ 
+        var hi = '안녕';
+        function greet(name) {
+            var word = '반가워';
+            console.log(hi + name + word); //매개변수 name도 지역변수이다
+        }
+        greet('철수');
+    </script>
+
+    <h2>closure</h2>
+    <input type="button" value="globalCounter" onclick="test1();">
+    <input type="button" value="closureCounter" onclick="test2();">
+    <script>
+        /**
+         * 함수실행에 필요한 모든 자원(지역변수, 자유변수)을 가지고 외부로부터 닫혀있는 함수
+         */
+        function funcX(){
+            var num = 100; //지역변수
+            return function(){
+                console.log('num=',num); 
+            }
+        }
+        var num = 200; //전역변수
+        var myf = funcX();
+        console.log(myf);//ƒ (){console.log('num=',num);} : 자유변수 num을가지고 닫혀있다
+        myf();
+
+
+        //전역변수 cnt
+        var cnt = 0;
+        function test1() {
+            console.log("globalCounter = " + ++cnt); //전역변수 cnt -> 외부에서 cnt접근이 가능(오작동일으킬확률이 높다)
+        }
+
+
+        var test2 = makeClosureCounter();
+        function makeClosureCounter() {
+            var cnt = 0;
+            return function() {
+                console.log("closureCounter : " + ++cnt); //자유변수 cnt -> 외부에서 cnt접근이 불가(오작동일으킬확률이 낮다)
+            }
+        }
+    </script>
+</body>
+</html>

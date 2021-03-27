@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css - box model</title>
+</head>
+<body>
+    <h1>Box model</h1>
+    <div class="test">컨텐츠컨텐츠컨텐츠</div>
+    <div class="test" id="m-collapse">컨텐츠컨텐츠컨텐츠</div>
+    <!--
+        content : 시작/종료태그 사이의 내용물 width속성값
+        padding : 컨텐츠와 border사이의 여백
+        border : 경계선. 너비를가진다
+        margin : border와 다른 요소사이의 여백
+    -->
+    <style>
+    
+        #m-collapse {
+            margin-top: 50px; /* 마주하는 요소간의 margin값은 큰값으로 처리된다 */
+        }
+
+        .test {
+            background-color: yellowgreen;
+            width: 200px;
+            height: 200px;
+            border: 10px solid tan;
+            /* border-light : 10px solid tomato; */
+            margin: 10px auto;
+            padding: 5px 10px 15px 20px; /* top-right-bottom-left */
+
+        }
+
+    </style>
+
+</body>
+</html>

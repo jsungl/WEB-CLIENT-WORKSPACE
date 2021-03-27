@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js - object</title>
+</head>
+<body>
+    <h1>Object</h1>
+    <h2>객체생성</h2>
+    <input type="button" value="실행" onclick="test1();">
+    <script>
+        /**
+         * (속성명:속성값)으로 구성된 요소를 관리하는 객체
+         * - 속성명 : 식별자(문자열로 작성가능)
+         * - 속성값 : 모든 타입 가능
+         */
+        function test1() {
+            var obj1 = {
+                name:"홍길동",
+                age:33,
+                married:true,
+                hobby:['축구','농구','야구'],
+                pet:{
+                    name:'구리구리',
+                    breed:'말티즈'
+                },
+                "foo-bar":"ㅋㅋㅋ"
+                //123:456 숫자속성명도 가능
+            };
+            var obj2 = new Object();
+            obj2.pname = '말린망고';
+            obj2.price = 3000;
+            obj2.ingredient = ['mango','sugar'];//dot notation
+            obj2['origin'] = '필리핀'; //bracket notation. 단 속성명은 문자열로 전달되야한다
+            //bracket notation 사용용도
+            //obj2.ty-pe = '피클'; 이렇게 작성하게되면 .이아니라 -를기준으로 인식하므로
+            //obj2['ty-pe'] = '피클';처럼 bracket notation을 사용하면된다
+
+            console.log(obj1);
+            console.log(obj2);
+
+
+            console.log(obj1.name);
+            console.log(obj1.hobby[2]);
+            console.log(obj1.pet.breed);
+            console.log(obj2['origin']);
+
+        }
+    </script>
+
+    <h2>메소드</h2>
+    <input type="button" value="실행" onclick="test2();">
+    <script>
+        /**
+         * 객체의 속성값이 function인 경우, 메소드라함
+         * 
+         */
+        function test2() {
+            var pet = {
+                petName : '구리구리',
+                eat : function(food) {
+                    //console.log(food + "를 먹는다");
+                    console.log(this); //pet객체를 가리킨다
+                    console.log(this.petName + '이/가 ' + food + "를/을 먹는다"); //(this용법3) : 메소드에서 this는 현재객체를 가리킨다
+                }
+            };
+        
+            console.log(pet);
+            console.log(pet.eat); //function(food){...}
+            pet.eat('개껌');
+            //pet['eat']('갈비');
+            //var propName = 'eat';
+            //pet[propName]('우유');
+        
+
+        };
+    </script>
+
+    <h2>속성 순회 | 동적제어</h2>
+    <input type="button" value="실행" onclick="test3();">
+    <input type="button" value="게임종료" onclick="test4();">
+    <input type="button" value="동적제어" onclick="test5();">
+    <input type="button" value="toString" onclick="test6();">
+    
+    <script>
+        /**
+         * 단순for문이 아닌 for in문을 사용해서 모든 속성을 순회가능
+         */
+        var game; //전역변수로 선언
+        function test3() {
+            game = {
+                title : "DIABLO",
+                price : 9900,
+                lang : ['ko','eng','cn'],
+                // "start-time" : '',
+                // "end-time" : '',
+                run : function() {
+                    console.log(this.title + "를 실행합니다");
+                    this['start-time'] = new Date();
+                },
+                shutdown : function() {
+                    console.log(this.title + "를 종료합니다");
+                    this['end-time'] = new Date();
+                    //게임시간 계산
+                    var duration = (this['end-time'] - this['start-time']) / 1000 / 60; //분단위
+                    //console.log(duration);
+                    duration = Math.floor(duration * 10) / 10;
+                    console.log(duration + "분동안 게임하셨습니다");
+                }
+            }
+            
+
+            for(var key in game){
+                console.log(key + " : " + game[key]);
+            }
+            //game객체에 run메소드를 실행하면 start-time속성에 현재시각을 기록하세요. 
+            //game객체에 shutdown메소드를 실행하면 end-time속성에 끝낸시각을 기록하세요
+            game.run();
+        }
+
+        function test4() {
+            game && game.shutdown(); //game객체가 존재하지않는다면(게임종료를 먼저누른경우) 실행하지않는다
+        }
+
+
+        /**
+         * 객체 생성이후 자유롭게 속성을 추가하거나 삭제할수있다
+         */
+        function test5() {
+            var student = new Object();
+            student.name = '홍길동';
+            student.class = 'M';
+            student.no = 33;
+            console.log(student);
+            
+            //속성제거    
+            delete student.no;
+        }
+
+        /**
+         * 모든객체가 Object를 상속한다
+         * toString Override
+         * 
+         * javascript는 prototype기반으로 상속모델을 제공한다
+         */
+        function test6() {
+            var notebook = {
+                title : '오늘의 일기',
+                content : '오늘은 자바스크립트와 즐거운 하루를 보냈다',
+                date : new Date(),
+                toString : function() {
+                    //return "title = " + this.title + ", content = " + this.content + ", date = " + this.date;
+                    var str = "";
+                    for(var key in this){
+                        key != "toString" && (str += key + " : " + this[key] + " ");
+                    }
+                    return str;
+                }
+            };
+            console.log("notebook : " + notebook); //string과 더했더니 객체가 문자열로 표현됨(notebook.toString()가 자동호출됨)
+            console.log(notebook);
+        }
+
+    </script>
+</body>
+</html>

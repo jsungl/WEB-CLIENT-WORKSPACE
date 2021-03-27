@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello - js</title>
+    <script src="js/sample.js"></script>
+    <script>
+        //한줄주석
+        /* 그룹주석 */
+
+        //script best position1
+        // alert('나를 실행하고 지나가라');
+
+    </script>
+</head>
+<body>
+    <h1>Hello Javascript</h1>
+    <h2>Javascript를 사용하는 3가지 방법</h2>
+    <!-- 태그의 inline 이벤트속성 작성 -->
+    <input type="button" value="실행1" onclick="alert('안녕 나 자스야'); console.log('안녕 여기도자스야');">
+    <!-- 내부 script태그를 작성-->
+    <input type="button" value="실행2" onclick="foo();">
+    <!-- 외부script 작성-->
+    <input type="button" value="실행3" onclick="bar();">
+    
+    
+    
+    
+    
+    
+    <script>
+        //script best position2
+        // alert('html태그를 모두 해석하고 그 다음에 나를 실행한다');
+        
+        //함수선언
+        function foo() {
+            alert('foo를 호출!!!');
+        }
+        //함수호출 : 호출해야 실행된다
+        //foo();
+    </script>
+
+</body>
+</html>

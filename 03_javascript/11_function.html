@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js - function</title>
+</head>
+<body>
+    <h1>Function</h1>
+    <h2>함수 작성</h2>
+    <script>
+        /**
+         * 함수선언식
+         */
+        function foo() {
+            
+        }
+
+        /**
+         * 함수 표현식
+         * 함수이름이 없어서 익명함수로 불린다(함수이름을 쓸수있지만 함수호출할때는 bar로 호출해야한다)
+         */
+        var bar = function() {
+            
+        };
+        //bar();
+
+        /**
+         * 즉시 실행함수(Immediately Invoked Function Expression) :  IIFE
+         */
+        (function(){
+            console.log("hello iife!");
+        }) //선언
+        (); //호출
+
+        (function(){
+            console.log("bye iife!");
+        }()); //선언과호출동시에
+
+        (function(name){
+            console.log("안녕~" + name);
+        })('철수');
+
+    </script>
+
+
+    <h2>매개변수 | 매개인자</h2>
+    <input type="button" value="실행" onclick="test1(1,2,3);">
+    <input type="button" value="arguments" onclick="test2();">
+
+    <script>
+        /**
+         * 매개변수(parameter) : 함수선언부의 매개인자가 담길 공간(변수)
+         * 매개인자(argument) : 함수호출부에서 전달될 값
+         * 
+         * 매개변수, 매개인자의 개수가 달라도 문제되지않는다 -> 남는 매개인자들은 버려진다
+         */
+        function test1(x){
+           console.log("x = " + x); //x가 정해지지않아도 오류가나지는않는다(undefined)
+           
+           //매개인자 유사배열 arguments참조
+           console.log(arguments);
+           for(var i = 0; i < arguments.length; i++){
+               console.log(arguments[i]);
+           }
+        
+        } 
+
+        /**
+         * 매개인자의 합을 출력하는 가산기함수 add를 작성
+         */
+        function test2() {
+            console.log(add(1,2,3,4,5,6,7,8,9,10));
+            console.log(add(12.34, 45.67));
+            console.log(add('a','b','c','d'));
+        }
+
+        function add(x) {
+            // if(typeof(x) == typeof('string'))
+            //     var sum = "";
+            // else
+            //     var sum = 0;
+            var sum = isNaN(arguments[0]) ? "" : 0;
+    
+            for(var i = 0; i < arguments.length; i++){
+                sum += arguments[i];
+            }
+            return sum;
+        }
+
+    </script>
+
+    <h2>함수 특징</h2>
+    <input type="button" value="return value" onclick="test3();">
+    <input type="button" value="중첩함수" onclick="test4(10,5);">
+    <script>
+        /**
+         * 함수의 return구문이 없다면 undefined를 리턴
+         */
+        function test3() {
+            var k = koo();
+            console.log(k); //undefined
+        }
+        function koo() {
+            //return 100;
+        }
+
+        /**
+         * a^2 + b^2 = c^2
+         * 밑변  높이   빗변
+         */
+        function test4(a,b) {
+            //power()는 test4외부에서 접근불가능
+            function power(n) {
+                return n ** 2; //제곱
+            }
+
+            //제곱근 구하기
+            c = Math.sqrt(power(a) + power(b));
+            console.log(c); //11.180339887498949
+        }
+    </script>
+
+    <h2>함수고급</h2>
+    <input type="button" value="매개인자" onclick="test5();">
+    <input type="button" value="리턴값" onclick="test6();">
+    <input type="button" value="999" onclick="(soo()(999));">
+    <script>
+        /**
+         * 자바스크립트에서 함수는 값으로 취급된다
+         * 변수에 대입할수있고(함수표현식) 
+         * 함수의 인자로 전달되거나(콜백함수) 
+         * 리턴값으로 사용될수있다 
+         */ 
+
+        var names = ['html','css','js','jquery','java','oracle','mybatis','maven','lombok','spring']; //전역변수
+
+        function test5() {
+            var f = function(n) {
+                //console.log(n + ": hello javascript");
+                console.log(n + ": hello " + names[n-1]);
+                //console.log(n + ": hello " + names);
+            }
+            exec(f);
+            // exec(function(n) {
+            //     //console.log(n + ": hello javascript");
+            //     console.log(n + ": hello " + names[n-1]);
+            //     //console.log(n + ": hello " + names);
+            // });
+        }
+
+       
+        /**
+         * 1:hello javascript
+         * 2:hello javascript
+         * 3:hello javascript
+         * 4:hello javascript
+         * 5:hello javascript
+         * ...
+         * 10 : hello javascript
+         */
+        function exec(a) {
+            console.log(a); //function
+            //a();
+            for(var i = 0; i < 10; i++){
+                a(i+1);
+                //a(i+1,names[i]);
+            }
+            
+        }
+
+        function test6() {
+            var f = makeFunction();
+            f('js');
+            
+            //즉시실행함수 (makeFunction()('js')); 와 같다
+            
+            // var sayHello = makeFunction('say');
+            // var sayGoodBye = makeFunction('good bye');
+            // sayHello('js');
+            // sayGoodBye('js');
+        }
+
+        //함수를 리턴
+        function makeFunction() {
+            return function(name) {
+                console.log("hello " + name + "~");
+                //console.log(say + ' ' + name + "~");
+            }
+        }
+
+        //999 출력
+        function soo() {
+            return function(n) {
+                alert(n);
+            }
+        }
+    </script>
+
+    <h2>실습문제 : 함수 scope</h2>
+    <script>
+        //1
+        var z = 50;
+        (function varTest(){
+            var z = 55;
+            z += 45;
+            console.log('varTest() : z=',z); //100
+        }());
+        //console.log('z=',z); //50   
+        
+        //2
+        var y = 99;
+        (function varTest2(){
+            var x = 100;
+            var y = 9;
+            z = 1; //전역변수로 등록
+            console.log('varTest2() : x+y+z=',x+y+z); //110
+        }());
+        //console.log('y+z=',y+z); //100
+        //console.log('x+y+z=',x+y+z); //x가 지역변수이므로 밖에서 호출시 오류
+        
+        //3
+        //전역에서 실행한 for문의 내부변수 i(전역변수)
+        for (var i=1; i<=10; i++) {
+            console.log(i); // 1~10까지 출력
+        }
+        (function getNum() {
+            console.log('getNum() : i=',i); //11
+        }());
+        
+        //4 
+        function funcX(){
+            var num = 100; //자유변수
+            return function(){
+                console.log('num=',num); 
+            }
+        }
+        var num = 200; //전역변수
+        var myf = funcX();
+        console.log(myf);//ƒ (){console.log('num=',num);}
+        myf(); //num=100
+    </script>
+</body>
+</html>

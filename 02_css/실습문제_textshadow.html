@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>textshadow</title>
+    <style>
+        #bg {
+            background-color: black;
+            width: 800px;
+        }
+        .common {
+            font-size: 96px;
+            font-weight: bold;
+            line-height: 100px;
+        }
+        span#ts1 {
+            color: red;
+            text-shadow: 5px 5px 0px coral;
+        }
+        span#ts2 {
+            color: white;
+            text-shadow: 0px 1px 20px #f3eae7;
+        }
+        span#ts3 {
+            color: white;
+            text-shadow: 1px 1px 20px greenyellow;
+        }
+        span#ts4 {
+            text-shadow: 0 0 4px #ccc,
+                         0 -5px 4px #ff3,
+                         2px -10px 6px #fd3,
+                        -2px -15px 11px #f80,
+                         2px -19px 18px #f20;
+        }
+    </style>
+</head>
+<body>
+    <h1>TextShadow</h1>
+    <div id="bg">
+        <span id="ts1" class="common">HTML5</span>
+        <br>
+        <span id="ts2" class="common">HTML5</span>
+        <br>
+        <span id="ts3" class="common">HTML5</span>
+        <br>
+        <span id="ts4" class="common">HTML5</span>
+    </div>
+
+    
+</body>
+</html>

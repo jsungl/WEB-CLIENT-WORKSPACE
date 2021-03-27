@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("table tr").click(function(e) {
+                if($(this).is("table tr:eq(0)"))
+                    return;
+                var $arr = $(this).children();
+                console.log($arr);
+                $arr.each(function(index,item){
+                    $("span#s" + (index + 1)).html(item.innerHTML);
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <table border="1">
+        <tr><th>번호</th><th>제목</th><th>작성자</th></tr>
+        <tr><td>1</td><td>첫 번째 게시물 입니다</td><td>홍길동</td></tr>
+        <tr><td>2</td><td>두 번째 게시물 입니다</td><td>홍길동</td></tr>
+        <tr><td>3</td><td>세 번째 게시물 입니다</td><td>홍길동</td></tr>
+    </table>
+    <div class="result">
+        선택한 게시물 : 
+        <span id="s1"></span> /
+        <span id="s2"></span> /
+        <span id="s3"></span>
+    </div>
+</body>
+</html>

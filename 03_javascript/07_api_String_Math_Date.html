@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js - String | Math | Date</title>
+</head>
+<body>
+    <h1>String</h1>
+    <input type="button" value="실행" onclick="test1();">
+    <input type="button" value="실습문제" onclick="test2();">
+    <script>
+        /**
+         * String 내장객체 : 문자열 관련 메소드를 제공
+         */
+        var test1 = function() {
+          var str = "Samsung Apple Xiomi";
+          console.log(str.length); //length속성
+          console.log(str.toUpperCase()); //SAMSUNG APPLE XIOMI
+          console.log(str.toLowerCase()); //samsung apple xiomi
+          console.log(str.indexOf('ms')); //2번지에 존재
+          console.log(str.lastIndexOf('i')); //18번지에 존재
+          console.log(str.charAt(8)); //A
+          console.log(str[8]); //A 문자열->문자배열취급
+          
+          //문자열 일부를 리턴 : 2번지 ms잘라오기
+          console.log(str.substring(2,4)); //2번지에서 4번지전까지
+          console.log(str.substring(2)); //뒤에 생략시 2번지부터 끝까지
+
+          //substr(start[,legth])
+          console.log(str.substr(2,2)); //ms
+          console.log(str.substr(2)); //2번지부터 끝까지 가져옴
+          
+          var arr = str.split(" ");
+          console.log(arr); //배열리턴
+          
+        };
+
+        /**
+         * 두개의 인자(문자열과 문자)를 입력받고 문자열에서 문자가 몇번 출현하는지 리턴하는 함수를 생성
+         * 
+         * countChar("hahaha","a") = 3
+         * countChar("abccba","c") = 2
+         * countChar("abcde","x") = 0
+         */ 
+        
+        var test2 = function() {
+            // var str = prompt("문자열입력");
+            // var ch = prompt("문자입력");
+            // console.log(countChar(str,ch));
+
+            var result = countChar("hahaha","a");
+            console.log(result);
+            var result = countChar("abccba","c");
+            console.log(result);
+            var result = countChar("abcde","x");
+            console.log(result);
+        };
+
+        var countChar = function(str,ch){
+            var count = 0;
+            for(var i = 0; i < str.length; i++){
+                if(str[i] == ch)
+                    count++;
+            }
+            return count;
+        };
+    </script>    
+    
+
+    <h1>Math</h1>
+    <input type="button" value="실행" onclick="test3();">
+    <script>
+        var test3 = function(){
+            var num = 123.456;
+            console.log(Math.round(num)); //123
+            console.log(Math.round(num * 100) / 100); //123.46
+            console.log(Math.ceil(num)); //124
+            console.log(Math.ceil(num * 10) / 10); //123.5
+            console.log(Math.floor(num)); //123
+            console.log(Math.floor(num* 10) / 10); //123.4
+
+            console.log(Math.random()); //0.0(포함) ~ 1.0(미포함)사이의 실수
+            console.log(Math.floor((Math.random() * 10) + 1)); //1~10사이의 난수
+        };
+    </script>
+
+    <input type="button" value="실습문제" onclick="test4();">
+    <ul id="test-rnd">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    <script>
+        /**
+         * #test-rnd 하위의 li태그에 1~100사이의 난수를 대입하세요
+         * 단, 짝수라면 글자색을 예쁘게 할것.
+         */
+        var test4 = function(){
+            var li = document.querySelectorAll("#test-rnd>li");
+            //var li = document.getElementsByTagName("li");
+            for(var i = 0; i < li.length; i++){
+                var rnum = Math.floor((Math.random() * 100) + 1);
+                li[i].innerHTML = rnum;
+                li[i].style.color = "black"; //초기화
+                if(rnum % 2 == 0)
+                    li[i].style.color = "green";
+                    //li[i].innerHTML = "<mark>" + rnum + "</mark>";
+                    
+            } 
+        };
+
+    </script>
+    
+    
+    <h1>Date</h1>
+    <input type="button" value="실행" onclick="test5();">
+    <script>
+        /**
+         * Date는 객체생성시점의 날짜/시각정보를 가진 객체
+         */
+        var test5 = function(){
+            var now = new Date();
+            console.log(now);
+
+            var time1 = new Date(2000, 0, 1, 15, 30, 50); //월은 0-based 인덱스
+            console.log(time1); //Jan 01 2000 15:30:50
+            var time3 = new Date("1999/03/01 15:34:20");
+            console.log(time3);//Mar 01 1999 15:34:20 
+            
+            displayDateTime(time3); //1999/03/01 15:34:20 형식으로 출력할것.
+            
+        };
+
+        var displayDateTime = function(dt){
+            var yyyy = dt.getFullYear();
+            var mm = get2digit(dt.getMonth() + 1); //0-based
+            var dd = get2digit(dt.getDate());
+            var day = dt.getDay();//일(0) ~ 토(6)
+            var dayArr = ['일','월','화','수','목','금','토'];
+            var hh = get2digit(dt.getHours());
+            var mi = get2digit(dt.getMinutes());
+            var ss = get2digit(dt.getSeconds());
+
+
+            alert(yyyy + "/" + mm + "/" + dd + "/" + "(" + dayArr[day] + ")" 
+                + hh + ":" + mi + ":" + ss);
+        };
+
+        var get2digit = function(n){
+            return n.toString().padStart(2,'0'); //앞에 0을 넣어 2자리를만든다
+            //return n < 10 ? '0' + n : n;와 같다
+        };
+    </script>
+</body>
+</html>

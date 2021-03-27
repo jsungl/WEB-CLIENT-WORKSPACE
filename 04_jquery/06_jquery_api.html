@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - api</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <h1>jQuery API</h1>
+    <h2>$(selector).each</h2>
+    <ul id="animals">
+        <li>dog</li>
+        <li>cat</li>
+        <li>hyenas</li>
+    </ul>
+    <input type="button" value="실행" onclick="test1();">
+    <script>
+        /**
+         * jquery객체의 요소를 순회하는 메소드
+         */
+        function test1() {
+            var $animals = $("#animals").children(); //li태그
+            //console.log($animals); jquery객체(3개)
+
+            $animals.each(function(index,li) {
+                console.log(index,li);
+                var $li = $(li);
+                var a = $li.text();
+                var A = a.toUpperCase();
+                $li.text(A);
+            })
+        }
+    </script>
+
+    <h2>$.each</h2>
+    <input type="button" value="실행" onclick="test2();">
+    <script>
+        /**
+         * $.each(jsObject, callbackFunction)
+         * - 배열 : $.each(arr,callbackFunction(index,요소))
+         * - 객체 : $.each(obj,callbackFunction(key,value))
+         */
+        function test2() {
+            var arr = [1,2,3,4,5];
+            $.each(arr, function(i,n) {
+                console.log(i + " : " + n); //index,요소
+            });
+
+
+            var obj = {
+                name : "홍길동",
+                age : 30
+            };
+            $.each(obj,function(key,value) {
+                console.log(key + " : " + value); //key,value
+            });
+        }
+    </script>
+
+    <h2>data</h2>
+    <input type="button" value="실행" onclick="test3();">
+    <ul id="pets">
+        <li data-birth="20210312" data-breed="푸들" data-weight="3.5">원</li>
+        <li data-birth="20210313" data-breed="불독" data-weight="5.5">투</li>
+        <li data-birth="20210314" data-breed="요크셔테리어" data-weight="4">쓰리</li>
+    </ul>
+    <script>
+        /**
+         * tag객체. dataset에 저장된 데이터를 get/set 할수있다
+         */
+        function test3() {
+            var colors = ['흰', '거무스름', '브라운'];
+            
+            var $pets = $("#pets").children(); 
+            //console.log($pets); //jquery객체(li태그)
+            $pets.each(function(i,li) {
+                //1. getter
+                //console.log(li); //js : li태그
+                //console.log(li.dataset); //js : DOMStringMap
+                //console.log($(li).data()); //jquery 객체
+                console.log($(li).data('birth'));
+                
+                //<li data-birth-day="20210314" ~~></li>일경우
+                //console.log($(li).data('birthDay')); //-(하이픈) 연결 key값은 camel casing으로 참조
+
+
+                //2. setter
+                $(li).data('petColor',colors[i]);
+
+                console.log($(li).data());
+    
+            })
+        }
+    </script>
+
+
+    <h2>is(selector)</h2>
+    <input type="button" value="실행" onclick="test4();">
+    <div class="wrapper">
+        <h2>h2</h2>
+        <h3 class="test">h3</h3>
+        <p class="test">p</p>
+        <pre>pre</pre>
+    </div>
+    <script>
+        /**
+         * is(selector)
+         * 현재 jquery객체가 selector와 일치여부를 반환
+         */
+        function test4() {
+            var $children = $(".wrapper").children();
+            $children.each(function(i,elem) {
+                //console.log($(elem).is(".test")); //class가 test인지 확인(true/false 리턴)
+                var $elem = $(elem);
+
+                //분기처리
+                if($elem.is("p")){
+                    $elem.css("color","red");
+                }
+                if($elem.is(".test")){
+                    $elem.css("background-color","yellowgreen");
+                }
+            })
+        }
+    </script>
+
+
+
+</body>
+</html>

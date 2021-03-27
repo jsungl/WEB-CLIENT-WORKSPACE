@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html5 - layout</title>
+    <style>
+
+
+        section.container {
+            width: 960px;
+            margin: 0 auto;
+            
+        }
+        header {
+            background-color: darkgray;
+            height: 100px;
+        }
+
+        nav {
+            float: right;
+            padding-top: 50px;
+        }
+        nav ul li {
+            list-style-type: none;
+            float: left;
+        }
+        nav ul li:not(:last-of-type)::after {
+            content: "|";
+        }
+        li a {
+            text-decoration: none;
+            padding: 0 10px;
+        }
+
+        li a:hover {
+            color: white;
+        }
+
+        section#content {
+            background-color: linen;
+            width: 640px;
+            height: 400px;
+            float: left;
+        }
+        aside {
+            background-color: lightgray;
+            width: 320px;
+            height: 400px;
+            float: right;
+        }
+
+        footer {
+            background-color: rgb(53, 50, 50);
+            height: 100px;
+            clear: both;
+        }
+        footer p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <header>
+            Header
+            <nav>
+                <ul class="navi">
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">HTML5</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JQUERY</a></li>
+                    <li><a href="">Mobile</a></li>
+                    <li><a href="">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <section id="content">
+            <article>
+                <h3>Article1</h3>
+                <p>동력은 역사를 끝까지 사라지지 생명을 사막이다. 귀는 풀이 맺어, 산야에 안고, 아니다. 아니한 가치를 끓는 어디 같은 간에 희망의 커다란 이것이다. 인생을 가장 어디 아니한 사랑의 석가는 몸이 교향악이다.</p>
+              </article>
+              <article>
+                <h3>Article2</h3>
+                <p>동산에는 살았으며, 반짝이는 불어 곳이 그들은 것이다.보라, 영원히 것이다. 행복스럽고 낙원을 옷을 하였으며, 살았으며, 아름다우냐?</p>
+              </article>
+        </section>
+
+        <aside>
+            <h4>Aside</h4>
+        </aside>
+        <footer>
+            <h3>Footer</h3>
+            <p>&lt;Copyright 2017. <strong>KH정보교육원</strong>. All rights reserved.&gt;</p>
+        </footer>
+    </section>
+</body>
+</html>

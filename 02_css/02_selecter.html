@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecter</title>
+</head>
+<body>
+    <h1>선택자</h1>    
+    <div>
+        <ul>
+            <li id="li-html5">html5</li>
+            <li>css3</li>
+            <li id="li-js" class="favor">javascript2015</li>
+            <li>jquery</li>
+            <li class="favor">node.js</li>
+            <li class="favor special">springframework</li>
+        </ul>
+    </div>
+
+    <style>
+        
+        /* 태그선택자*/
+        /* li {
+            color: chocolate;
+        } */
+        
+        /* 아이디선택자*/
+        /* #li-js {
+            font-size: 32px;
+            color: cyan;
+        } */
+
+        /* 클래스 선택자*/
+        /* .favor {
+            background-color: darkblue;
+        } */
+
+        /* 복수개에 적용*/
+        /* h1, .favor {
+            text-decoration: underline;
+        } */
+
+        /* 복수개 이상의 클래스 선택자*/
+        /* .favor.special {
+            color: darkslategray;
+            font-size: 48px;
+        } */
+
+     
+    </style>
+
+    <hr>
+    <div class="wrapper">
+        <h4>머릿글 h4</h4>
+        <ul id="first-ul">
+            <li>에라이1</li> <!--div태그의 후손태그-->
+            <li>에라이2</li>
+        </ul>
+        <div id="second-div">
+            <h4>머릿글 h4</h4>
+            <ul>
+                <li>에라이3</li>
+                <li>에라이4</li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        /* 자식태그 */
+        /* div.wrapper>h4 {
+            color: firebrick;
+        } */
+        /* 후손태그*/
+        /* div.wrapper h4 {
+            text-decoration: line-through;
+        } */
+        /*.wrapper>ul, .wrapper>ul>li 등*/
+        /* #first-ul>li {
+            color: fuchsia;
+        } */
+
+        /* .wrapper ul li {
+            background-color: gold;
+        } */
+
+    </style>
+    
+    <hr>
+    <div class="container">
+        <!-- p#p-test${안녕$}*5 -->
+        <p id="p-test1">안녕1</p>
+        <p id="p-test2">안녕2</p>
+        <p id="p-test3">안녕3</p>
+        <p id="p-test4">안녕4</p>
+        <p id="p-test5">안녕5</p>
+        <pre id="pre-test6">안녕6</pre>
+
+    </div>
+    <style>
+        /* p#p-test2 {
+            color: green;
+            background-color: grey;
+        } */
+        /* 다음형제요소 하나 */
+        /* p#p-test2 + p {
+            color: hotpink;
+        } */
+        /* 다음 형제요소 모두 */
+        /* p#p-test2 ~ p{
+            font-size: 24px;
+        } */
+        /* 태그 상관없이 다음 모두 */
+        /* p#p-test2 ~ *{
+            color: khaki;
+        } */
+    
+        /* 이전형제요소를 가리키는 선택자는 없다 */
+
+    </style>
+
+    <hr>
+    <form action="">
+        <fieldset>
+            <legend>속성관련 선택자</legend>
+            <input type="text"><br>
+            <input type="text" name="user-name"><br>
+            <input type="email" name="user-email"><br>
+            <input type="text" name="petname"><br>
+        
+        </fieldset>
+
+    </form>
+    <style>
+        /* 속성 선택자 */
+        /* [name] {
+            background-color: lightblue;
+        } */
+        
+        /* [name=user-name] {
+            background-color: lightcyan;
+        } */
+
+        /* 포함 */
+        /* [name*=er]{
+            background-color: lightpink;
+        } */
+       
+        /* 시작 */
+        /* [name^=user] {
+            background-color: lightseagreen;
+        } */
+        
+        /* 끝 */
+        [name$=name] {
+            background-color: lightsteelblue;
+        }
+    </style>
+
+    <hr>
+    <h2>가상선택자</h2>
+    <div class="box click">clik me!</div>
+    <div class="box over">커서를 이동하세요</div>
+    <style>
+        .box {
+            cursor: pointer; /* 화살표모양이 손가락모양으로 변화*/
+            border: 2px solid tan;
+            padding: 10px;
+            margin: 10px;
+        }
+        /* 클릭했을때 속성을 적용 */
+        .click:active {
+            background-color:tan;
+            color: white;
+        }
+        /* 커서가 영역안에 올라오면 */
+        .over:hover {
+            color:tomato;
+            border: 2px dashed tomato;
+        }
+    </style>
+
+    <hr>
+    <a href="http://www.innerbody.com/htm/body.html">어떤사이트(방문전 | 방문후 | 커서가 올라왔을때 | 클릭했을때)</a>
+    <style>
+        a:link{
+            color: coral;
+            text-decoration: none; /* 처음 밑줄날리기 */
+        }
+        a:visited {
+            color:purple;
+        }
+        a:hover {
+            text-decoration: underline; /* 커서를 올리면 밑줄그리기 */
+        }
+        a:active {
+            color: blue;
+        }
+    </style>
+
+    <br><br>
+    <hr>
+    <input type="checkbox" name="smsOk" id="smsOk">
+    <label for="smsOk">문자수신</label>
+    
+    <style>
+        /* check됬다면 */
+        input[type=checkbox]:checked {
+            
+            width: 48px;
+            height: 48px;
+        }
+        /* check되면 글자도 같이 바뀌게 */
+        input[type=checkbox]:checked + label {
+            font-size: 48px;
+        }    
+    </style>
+
+    <h2>구조선택자</h2>
+    <!-- div.test>p{테스트$}*10 -->
+    <div class="test">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+        <p>테스트6</p>
+        <p>테스트7</p>
+        <p>테스트8</p>
+        <p>테스트9</p>
+        <p>테스트10</p>
+    </div>
+    <style>
+        /* p태그이면서 첫번째자식만 */
+        /* .test p:first-child { 
+            background-color: blueviolet;
+            color: cornsilk;
+        } */
+        /* p태그이면서 마지막자식만 */
+        /*p:last-child { 
+            background-color: darkgray;
+            color: white;
+        } */
+
+        /* 특정자식만(1부터 시작) : 2n(짝수만), 2n+1(홀수만)*/
+        /* p:nth-child(3) { 
+            text-decoration: underline;
+        } */
+
+        /* p태그중에서 첫번째 태그 */
+        /* .test p:first-of-type {
+            background-color: violet;
+        } */
+         /* p태그중에서 마지막 태그 */
+        /* .test p:last-of-type {
+            background-color: darkgray;
+            color: white;
+        } */
+         /* p태그중에서 특정위치 태그 */
+        /* .test p:nth-of-type(3) {
+            background-color: yellowgreen;
+        } */
+
+        /* 부정선택자 :not(선택자) */
+        /* .test>:not(p:nth-of-type(3)) {
+            font-size: 24px;
+            color: royalblue;
+        } */
+
+        /* 최상위 선택자 :root -> html*/
+        /* :root {
+            background-color: brown;
+        } */
+    </style>
+
+
+
+    <h2>선택자 우선순위</h2>
+    <div class="wrapper">
+        <div id="mydiv" class="test" style="background-color: blueviolet;">우선순위 테스트</div>
+    </div>
+    <style>
+        /* 우선순위
+           태그 -> 속성 -> 클래스 -> 아이디 -> 인라인속성 -> !important
+        */
+        #mydiv {
+            background-color: blue;
+        } 
+        .test {
+            background-color: bisque;
+            font-size: 36px;
+        }
+        .wrapper .test {
+            font-size: 24px; /* 부모클래스를 써준게 적용된다 */
+            background-color: silver;
+        }
+        div {
+            width: 500px;
+            height: 500px;
+            background-color: aquamarine;
+        }
+    </style>
+
+
+
+
+    <br><br><br><br><br>
+</body>
+</html>

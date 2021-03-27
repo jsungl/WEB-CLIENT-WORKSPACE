@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery - selector</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <h1>Selector : 선택자</h1>
+    <ul>
+        <li class="foo" id="bar1">안녕1</li>
+        <li class="foo" id="bar2">안녕2</li>
+        <li class="foo" id="bar3">안녕3</li>
+        <li id="bar4">안녕4</li>
+        <li id="bar5">안녕5</li>
+    </ul>
+    <input type="button" value="tag" onclick="test1();">
+    <script>
+        /**
+         * tag
+         * class
+         * id
+         */
+        function test1() {
+            var $lis = $("ul>li"); //$변수명 : jquery객체임을 명시(개발자들사이의 관례)
+            //console.log($lis);
+            $lis.css("color","lightblue");
+
+            //console.log(document.getElementsByTagName("li")); //배열임
+            // for(var i = 0; i < document.getElementsByTagName("li").length; i++){
+            //     document.getElementsByTagName("li")[i].style.color = "green";
+            // }
+
+            //class
+            $(".foo").css("font-size","2em");
+            //$("#bar1").css("text-decoration","underline");
+            //id
+            console.log($("#bar1").css("text-decoration","underline")); //$("#bar1")를 리턴
+
+            //method chaining : 계속사용이 가능
+            $("#bar1").css("font-size", "3em")
+                      .css("background-color", "deeppink")
+                      .css("color", "#fff");
+        }
+    </script>
+
+    <hr>
+    <fieldset>
+        <legend>메뉴</legend>
+        <input type="checkbox" name="menu" id="menu1" value="햄버거"><label for="menu1">햄버거</label>
+        <input type="checkbox" name="menu" id="menu2" value="핫도그"><label for="menu2">핫도그</label>
+        <input type="checkbox" name="menu" id="menu3" value="피자"><label for="menu3">피자</label>
+        <input type="checkbox" id="menuAll"><label for="menuAll">전체선택/해제</label>
+        <input type="button" value="get | set" id="checkGetSet">
+        <input type="button" value="확인" id="checkValue">
+    </fieldset>
+    <script>
+        //console.log($("[name=menu]"));
+        //console.log($("[type=checkbox]"));
+
+        //jquery 이벤트핸들링
+        $("[name=menu]").change(function(e) {
+            //console.log(e);
+            console.log(e.target); //js
+            console.log(this); //js
+            console.log($(this)); //jquery
+            //console.log(this.checked); javascript문법 
+
+            //jquery객체
+            console.log($(this).prop("checked")); //return true|false, getter
+            //$(e.target).prop("checked",false); //setter
+            //value속성값
+            console.log($(e.target).val());
+            //console.log($(this).val());
+        });
+
+        //[name=menu] 전체선택/해제 처리
+        $("#menuAll").change(function(e) {
+            //var $chk = $(this).prop("checked");
+            $('[name=menu]').prop("checked",this.checked); //setter
+        })
+
+        /**
+         * #checkGetSet click event handling
+         * 복수개의 요소를 가진 jquery객체
+         * - getter : 첫번째 인자의 속성값
+         * - setter : 모든 인자의 속성값에 적용
+         */
+        $('#checkGetSet').click(function() {
+            //console.log($("[name=menu]").prop("checked")); //getter
+            console.log($("[name=menu]").prop("checked",true)); //setter
+            
+        });
+    </script>
+
+    <img src="images/flower1.png" alt="" style="margin:50px 20px; width: 300px;">
+    <script>
+        /**
+         * attr : html태그상에 기록된 속성을 가져오거나 설정할경우
+         * 
+         */
+        $('img').click(function() {
+            console.log(this);
+            console.log($(this).attr("src")); //getter
+            $(this).attr("src","images/flower2.png"); //setter
+        });
+
+        $('#checkValue').click(function() {
+
+            // $('[name=menu]').each(function(index,elem) {
+            //     //console.log(index,elem); //elem 순수 js tag객체
+            //     var $elem = $(elem);
+            //     if($elem.prop("checked"))
+            //         console.log($elem.val());
+
+            // });
+
+            $('[name=menu]:checked').each(function(index,menu) {
+                //console.log(menu.value); javascript방식
+                console.log($(menu).val()); //jquery방식
+            });
+        })
+    </script>
+
+    <div class="wrapper">
+        <p>안녕1</p>
+        <p>안녕2</p>
+        <p>안녕3</p>
+        <p>안녕4</p>
+        <p>안녕5</p>
+        <p>안녕6</p>
+        <p><a href="#">안녕7</a></p>
+        <p>안녕8</p>
+        <p>안녕9</p>
+        <p>안녕10</p>
+    </div>
+    <input type="button" value=":eq()" onclick="test2();">
+    <input type="button" value=":gt() :lt()" onclick="test3();">
+    <input type="button" value=":contains()" onclick="test4();">
+    <input type="button" value=":has()" onclick="test5();">
+    <input type="button" value=":not()" onclick="test6();">
+
+    <script>
+        /**
+         * :eq(index)
+         */
+        function test2() {
+            $(".wrapper p:eq(3)").css("font-size","2em")
+                            .css("color","green"); //4번째 요소에 설정
+            
+            
+        }
+
+        /**
+         * :gt(index) index보다 큰
+         * :lt(index) index보다 작은
+         */
+        function test3() {
+            $(".wrapper p:lt(3)").css({
+                                        "font-size":"2em",
+                                        "color":"green"
+                                    }); //css호출여러번하지않고 객체로 전달할수도있다                                
+        }
+
+        /**
+         * :contains()
+         * 특정 idx를 가진 태그조회
+         */
+        function test4() {
+            $(".wrapper p:contains('안녕8')").css("text-decoration","line-through");
+        }
+
+        /**
+         * :has(selector)
+         */
+        function test5() {
+            $(".wrapper p:has(a)").css("background-color","lightgray");
+        }
+
+        /**
+         * :not(selector)
+         */
+        function test6() {
+            $(".wrapper p:not(:first-child)").css("color","green");
+        }
+    </script>
+
+</body>
+</html>

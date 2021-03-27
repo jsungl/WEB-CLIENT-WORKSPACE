@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css - layout</title>
+    <style>
+        div {
+            padding: 10px;
+        }
+        #container {
+            background-color: grey;
+            width: 960px;
+            margin: 0 auto;
+        }
+        #header {
+            background-color: indianred;
+            height: 100px;
+        }
+        #content {
+            background-color: maroon;
+            width: 640px;
+            height: 400px;
+            float: left;
+        }
+        #sideinfo {
+            background-color: mediumvioletred;
+            width: 280px;
+            height: 400px;
+            float: right;
+        }
+        #footer {
+            background-color: navy;
+            height: 100px;
+            clear: both;
+            /* 페이지에float설정되어있으면그속성이그대로다음요소에영향을미치는데이를초기화 
+                오른쪽배치 왼쪽배치 둘다 취소*/
+        }
+    </style>
+</head>
+<body>
+    <!-- html 이전의 페이지 레이아웃 -->
+    <div id="container">
+        <div id="header">Header</div>
+        <div id="content">Content</div>
+        <div id="sideinfo">Side Info</div>
+        <div id="footer">Footer</div>
+    </div>
+</body>
+</html>
