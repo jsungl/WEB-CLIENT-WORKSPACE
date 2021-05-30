@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6 - desturucturing assignment</title>
+</head>
+<body>
+    <h1>구조분해할당 desturucturing assignment</h1>
+    <h2>배열</h2>
+    <button onclick="koo();">실행</button>
+    <script>
+    function koo(){
+        const arr = [1,2,3,4,5];
+        const a = arr[0];
+        const b = arr[1];
+        const c = arr[2];
+        const d = arr[3];
+        const e = arr[4];
+        console.log(a,b,c,d,e);
+
+        const [x,y,z,k,f,m] = arr; //건너뛰고 담을순없다.
+        console.log(x,y,z,k,f,m);  //1,2,3,4,5,m = undefined
+        //const [x,y,z,k,f,m = 123] = arr; //해당자리의 값이 undefined일 경우 기본값설정가능
+        //console.log(x,y,z,k,f,m);  //1,2,3,4,5,123
+
+        let o = 10, p = 20;
+        [o, p] = [p, o];
+        console.log(o,p);
+
+        //나머지 파라미터 rest parameter
+        const [q,r, ...rest] = ['홍길동','신사임당','윤봉준','세종대왕','유관순'];
+        console.log(q,r,rest);
+
+        function foo([v, w, ...rest]){
+        console.log("v = ", v);
+        console.log("w = ", w);
+        console.log("rest = ", rest);
+        }
+
+        foo(['x','y','z']);
+
+        let [,,xoo] = [1,2,3]; //건너뛰기 가능
+        console.log(xoo); // 3
+    }
+
+    </script>
+    <h2>객체</h2>
+    <button onclick="joo();">실행</button>
+    <script>
+    function joo() {
+        const user = {
+        id: 'honggd',
+        name: '홍길동',
+        items: {
+            weapon: 'k2',
+            car: {
+            name: '소나타',
+            color: 'black'
+            },
+            phone: {
+            number: '01012341234'
+            }
+        },
+        hobby: ['축구', '당구', '볼링']
+        }
+        console.log(user);
+        console.log(user.items.phone.number);
+        
+        // const {id, name, hobby} = user;
+        // console.log(id, name, hobby); 'honggd','홍길동',['축구', '당구', '볼링']
+
+        // const {id, name, hobby, items: {weapon}} = user;
+        // console.log(id, name, hobby, weapon); 'honggd','홍길동',['축구', '당구', '볼링'],'k2'
+
+        // const {id, name, hobby, items: {weapon, phone: {number}}} = user;
+        // console.log(weapon, number); 'k2','01012341234'
+
+        //할당된 변수명 바꾸기, 기본값설정
+        const {id: userId, profile = 'default.jpg'} = user;
+        console.log(userId, profile);
+        //console.log(id); // Uncaught ReferenceError: id is not defined
+
+        (function printUserHobby({name, hobby, favoriateFood = '떡뽁이', ...rest}){
+        console.log(name, hobby, favoriateFood, rest);
+        })(user);
+
+    }
+
+    </script>
+
+
+
+
+    <h2>객체</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
